@@ -1,0 +1,728 @@
+{
+  "datasets": [
+    {
+      "name": "bf1fe8aa",
+      "displayName": "Life_Expectancy",
+      "queryLines": [
+        "select * from learning.data.life_expectancy"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "6361c865",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "6810a722",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Year",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "name": "avg(LifeExpectancy)",
+                      "expression": "AVG(`LifeExpectancy`)"
+                    },
+                    {
+                      "name": "avg(InfantDeaths)",
+                      "expression": "AVG(`InfantDeaths`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "Year",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Year"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "avg(LifeExpectancy)",
+                      "displayName": "Average LifeExpectancy"
+                    },
+                    {
+                      "fieldName": "avg(InfantDeaths)",
+                      "displayName": "Average InfantDeaths"
+                    }
+                  ]
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "bbb2204b",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Life Expectancy\n",
+                "Life expectancy by countries over years"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "c0e79654",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "count(Country)",
+                      "expression": "COUNT(`Country`)"
+                    },
+                    {
+                      "name": "Status",
+                      "expression": "`Status`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "count(Country)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Country"
+                },
+                "color": {
+                  "fieldName": "Status",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Status"
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "frame": {
+                "title": "Proportion of Countries by Status",
+                "showTitle": true,
+                "showDescription": false
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 1,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "32d43ee2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Year",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    },
+                    {
+                      "name": "sum(GDP)",
+                      "expression": "SUM(`GDP`)"
+                    },
+                    {
+                      "name": "avg(BMI)",
+                      "expression": "AVG(`BMI`)"
+                    },
+                    {
+                      "name": "sum(Population)",
+                      "expression": "SUM(`Population`)"
+                    },
+                    {
+                      "name": "avg(LifeExpectancy)",
+                      "expression": "AVG(`LifeExpectancy`)"
+                    },
+                    {
+                      "name": "avg(InfantDeaths)",
+                      "expression": "AVG(`InfantDeaths`)"
+                    }
+                  ],
+                  "cubeGroupingSets": {
+                    "sets": [
+                      {
+                        "fieldNames": [
+                          "Year",
+                          "Country"
+                        ]
+                      },
+                      {}
+                    ]
+                  },
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "ASC",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "direction": "ASC",
+                      "expression": "`Country`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pivot",
+              "encodings": {
+                "rows": [
+                  {
+                    "fieldName": "Year",
+                    "displayName": "Year"
+                  },
+                  {
+                    "fieldName": "Country",
+                    "displayName": "Country"
+                  }
+                ],
+                "cell": {
+                  "type": "multi-cell",
+                  "fields": [
+                    {
+                      "fieldName": "sum(GDP)",
+                      "cellType": "text",
+                      "displayName": "Sum of GDP"
+                    },
+                    {
+                      "fieldName": "avg(BMI)",
+                      "cellType": "text",
+                      "displayName": "Average BMI"
+                    },
+                    {
+                      "fieldName": "sum(Population)",
+                      "cellType": "text",
+                      "displayName": "Sum of Population"
+                    },
+                    {
+                      "fieldName": "avg(LifeExpectancy)",
+                      "cellType": "text",
+                      "displayName": "Average LifeExpectancy"
+                    },
+                    {
+                      "fieldName": "avg(InfantDeaths)",
+                      "cellType": "text",
+                      "displayName": "Average InfantDeaths"
+                    }
+                  ],
+                  "displayAs": "columns"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 15,
+            "width": 6,
+            "height": 15
+          }
+        },
+        {
+          "widget": {
+            "name": "ffb09e76",
+            "queries": [
+              {
+                "name": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Country",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    },
+                    {
+                      "name": "Country_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Country",
+                    "displayName": "Country",
+                    "queryName": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Country"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "323aaea5",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Status",
+                      "expression": "`Status`"
+                    },
+                    {
+                      "name": "AdultMortality",
+                      "expression": "`AdultMortality`"
+                    },
+                    {
+                      "name": "LifeExpectancy",
+                      "expression": "`LifeExpectancy`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "AdultMortality",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "AdultMortality"
+                },
+                "y": {
+                  "fieldName": "LifeExpectancy",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "LifeExpectancy"
+                },
+                "color": {
+                  "fieldName": "Status",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Status"
+                }
+              },
+              "frame": {
+                "title": "Adult Mortality vs Life Expectancy",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 30,
+            "width": 5,
+            "height": 11
+          }
+        },
+        {
+          "widget": {
+            "name": "ab786a5e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Status",
+                      "expression": "`Status`"
+                    },
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    },
+                    {
+                      "name": "avg(Under5yrDeaths)",
+                      "expression": "AVG(`Under5yrDeaths`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "Country",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Country"
+                },
+                "y": {
+                  "fieldName": "avg(Under5yrDeaths)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Average Under5yrDeaths"
+                },
+                "color": {
+                  "fieldName": "Status",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Developed",
+                        "color": {
+                          "themeColorType": "selectionColor"
+                        }
+                      },
+                      {
+                        "value": "Developing",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 2
+                        }
+                      }
+                    ]
+                  },
+                  "displayName": "Status"
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 41,
+            "width": 5,
+            "height": 9
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "b6c96b62",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "ed30d340",
+            "queries": [
+              {
+                "name": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Year",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Year",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "name": "Year_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Year",
+                    "displayName": "Year",
+                    "queryName": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Year"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "f89ce266",
+            "queries": [
+              {
+                "name": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Country",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    },
+                    {
+                      "name": "Country_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Country",
+                    "displayName": "Country",
+                    "queryName": "dashboards/01f069b6eece1d7395b0079aa3302a4e/datasets/01f069b6f81e1545a889f08fee7864d6_Country"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    },
+    {
+      "name": "d8bfa10b",
+      "displayName": "Finance",
+      "layout": [
+        {
+          "widget": {
+            "name": "6b01ac5f",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Status",
+                      "expression": "`Status`"
+                    },
+                    {
+                      "name": "Year",
+                      "expression": "`Year`"
+                    },
+                    {
+                      "name": "avg(Population)",
+                      "expression": "AVG(`Population`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "Year",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Year"
+                },
+                "y": {
+                  "fieldName": "avg(Population)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Average Population"
+                },
+                "color": {
+                  "fieldName": "Status",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Status"
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 16
+          }
+        },
+        {
+          "widget": {
+            "name": "e8803dc6",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Financials\n",
+                "Financials for various countries"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "cbdd40d2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bf1fe8aa",
+                  "fields": [
+                    {
+                      "name": "Status",
+                      "expression": "`Status`"
+                    },
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    },
+                    {
+                      "name": "sum(GDP)",
+                      "expression": "SUM(`GDP`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Country",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "Country"
+                },
+                "y": {
+                  "fieldName": "sum(GDP)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of GDP"
+                },
+                "color": {
+                  "fieldName": "Status",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Status"
+                }
+              },
+              "frame": {
+                "title": "GDP by Country",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 3,
+            "height": 10
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}

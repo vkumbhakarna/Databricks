@@ -1,0 +1,143 @@
+{
+  "datasets" : [ {
+    "name" : "940d0c35",
+    "displayName" : "Nyc_Taxi",
+    "query" : "select * from learning.data.nyctaxi_trips"
+  } ],
+  "pages" : [ {
+    "name" : "916831bf",
+    "displayName" : "NYC_Trips",
+    "layout" : [ {
+      "widget" : {
+        "name" : "d23049e9",
+        "queries" : [ {
+          "name" : "main_query",
+          "query" : {
+            "datasetName" : "940d0c35",
+            "fields" : [ {
+              "name" : "monthly(tpep_pickup_datetime)",
+              "expression" : "DATE_TRUNC(\"MONTH\", `tpep_pickup_datetime`)"
+            }, {
+              "name" : "avg(trip_distance)",
+              "expression" : "AVG(`trip_distance`)"
+            } ],
+            "disaggregated" : false
+          }
+        } ],
+        "spec" : {
+          "version" : 3,
+          "widgetType" : "line",
+          "encodings" : {
+            "x" : {
+              "fieldName" : "monthly(tpep_pickup_datetime)",
+              "scale" : {
+                "type" : "temporal"
+              },
+              "displayName" : "tpep_pickup_datetime"
+            },
+            "y" : {
+              "fieldName" : "avg(trip_distance)",
+              "scale" : {
+                "type" : "quantitative"
+              },
+              "displayName" : "Average trip_distance"
+            }
+          }
+        }
+      },
+      "position" : {
+        "x" : 0,
+        "y" : 1,
+        "width" : 3,
+        "height" : 6
+      }
+    }, {
+      "widget" : {
+        "name" : "9f7f8a0c",
+        "queries" : [ {
+          "name" : "main_query",
+          "query" : {
+            "datasetName" : "940d0c35",
+            "fields" : [ {
+              "name" : "trip_distance",
+              "expression" : "`trip_distance`"
+            }, {
+              "name" : "count(trip_distance)",
+              "expression" : "COUNT(`trip_distance`)"
+            } ],
+            "disaggregated" : false
+          }
+        } ],
+        "spec" : {
+          "version" : 3,
+          "widgetType" : "bar",
+          "encodings" : {
+            "x" : {
+              "fieldName" : "trip_distance",
+              "scale" : {
+                "type" : "quantitative"
+              },
+              "displayName" : "trip_distance"
+            },
+            "y" : {
+              "fieldName" : "count(trip_distance)",
+              "scale" : {
+                "type" : "quantitative"
+              },
+              "displayName" : "Count of trip_distance"
+            }
+          },
+          "frame" : {
+            "title" : "Trip Distance Distribution",
+            "showTitle" : true
+          },
+          "mark" : {
+            "colors" : [ {
+              "themeColorType" : "visualizationColors",
+              "position" : 3
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 2
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 3
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 4
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 5
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 6
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 7
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 8
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 9
+            }, {
+              "themeColorType" : "visualizationColors",
+              "position" : 10
+            } ]
+          }
+        }
+      },
+      "position" : {
+        "x" : 3,
+        "y" : 3,
+        "width" : 3,
+        "height" : 6
+      }
+    } ],
+    "pageType" : "PAGE_TYPE_CANVAS"
+  } ],
+  "uiSettings" : {
+    "theme" : {
+      "widgetHeaderAlignment" : "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
